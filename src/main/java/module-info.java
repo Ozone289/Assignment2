@@ -6,4 +6,7 @@ module Application {
     
     exports Application;
     opens Application to javafx.fxml;
+    
+	requires java.sql;
+    exports DAO.DataAccessLayer;
 }
