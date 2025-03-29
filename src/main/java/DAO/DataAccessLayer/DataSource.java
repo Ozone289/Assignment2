@@ -5,17 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import read.AppProperties;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class DataSource {
     private static Connection connection = null;
-    private static final String PROPS_URL = "src/main/resources/DAO/database.properties";
+    
 
     /**
      * Constructs a new DataSource object.
      */
-    public DataSource() {
+    private DataSource() {
     }
 
     /**
@@ -29,16 +31,13 @@ public class DataSource {
             if (connection != null) {
                 System.out.println("Cannot create new connection, one exists already");
             } else {
-            	Properties props = new Properties();
-            	props.load(new FileInputStream(PROPS_URL));
-            	
-            	String url = props.getProperty("db.url");
-            	String user = props.getProperty("db.username");
-            	String pass = props.getProperty("db.password");
+            	String url = AppProperties.getDBUrl();
+            	String user = AppProperties.getDBUser();
+            	String pass = AppProperties.getDBPass();
             	
                 connection = DriverManager.getConnection(url, user, pass);
             }
-        } catch (SQLException | IOException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return connection;

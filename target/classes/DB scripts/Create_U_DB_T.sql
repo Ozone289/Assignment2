@@ -1,0 +1,6 @@
+CREATE USER 'CST3102'@'localhost' IDENTIFIED BY 'CST3102';
+GRANT CREATE, SELECT, INSERT, UPDATE, DELETE 
+ON FlightTracker TO 'CST3102'@'localhost';
+FLUSH PRIVILEGES;
+
+create database FlightTracker;

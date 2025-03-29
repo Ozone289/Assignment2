@@ -1,0 +1,4 @@
+--patch-module
+Application=_
+--add-reads
+Application=ALL-UNNAMED
